@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Soil Type Identification</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Eterna - v2.1.0
+  * Template URL: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <script>
+    /* This values is input in teh band1 and pass to reflectance band value 1 after aplying the formula....*/
+    function multband1(value){
+        var x1;
+        x1=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance1').value=x1;
+    }
+/* This values is input in teh band2 and pass to reflectance band value 2 after aplying the formula....*/
+    function multband2(value){
+        
+        var x2;
+        x2=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance2').value=x2;
+    }
+/* This values is input in teh band3 and pass to reflectance band value 3 after aplying the formula....*/
+    function multband3(value){
+        var x3;
+        x3=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance3').value=x3;
+    }
+/* This values is input in teh band4 and pass to reflectance band value 4 after aplying the formula....*/
+    function multband4(value){
+        var x4;
+        x4=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance4').value=x4;
+    }
+/* This values is input in teh band5 and pass to reflectance band value 5 after aplying the formula....*/
+    function multband5(value){
+        var x5;
+        x5=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance5').value=x5;
+    }
+/* This values is input in teh band6 and pass to reflectance band value 6 after aplying the formula....*/
+    function multband6(value){
+        var x6;
+        x6=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance6').value=x6;
+    }
+/* This values is input in teh band7 and pass to reflectance band value 7 after aplying the formula....*/
+    function multband7(value){
+        var x7;
+        x7=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance7').value=x7;
+    }
+      /* This values is input in teh band9 and pass to reflectance band value 9 after aplying the formula....*/
+    function multband9(value){
+        var x9;
+        x9=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance9').value=x9;
+    }
+      /* This values is input in teh band10 and pass to reflectance band value 10 after aplying the formula....*/
+
+    function multband10(value){
+        var x10;
+        x10=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance10').value=x10;
+    }
+/* This values is input in teh band11 and pass to reflectance band value 11 after aplying the formula....*/
+    function multband11(value){
+        var x11;
+        x11=(0.00002*value)+(-0.1)
+        document.getElementById('Reflectance11').value=x11;
+    }
+    
+
+
+
+function myelevation(value){
+ /* This is the sin of elevation of sun and output for CorrectivBand1.....*/
+        var z1, elevationofsun1, v1;
+        var y1= document.getElementById('Reflectance1').value;
+        z1=document.getElementById('phool').value;
+        elevationofsun1 = Math.sin(z1);
+        v1 = y1/elevationofsun1;
+        document.getElementById('CorrectiveBand1').value=v1;
+/* This is the sin of elevation of sun and output for CorrectivBand2.....*/
+
+        var z2, elevationofsun2, v2;
+        var y2= document.getElementById('Reflectance2').value;
+        z2=document.getElementById('phool').value;
+        elevationofsun2= Math.sin(z2);
+        v2=y2/elevationofsun2;
+        document.getElementById('CorrectiveBand2').value=v2;
+
+         /* This is the sin of elevation of sun and output for CorrectivBand3.....*/
+
+         var z3, elevationofsun3, v3;
+        var y3= document.getElementById('Reflectance3').value;
+        z3=document.getElementById('phool').value;
+        elevationofsun3= Math.sin(z3);
+        v3=y3/elevationofsun3;
+        document.getElementById('CorrectiveBand3').value=v3;
+
+         /* This is the sin of elevation of sun and output for CorrectivBand4.....*/
+
+         var z4, elevationofsun4, v4;
+        var y4= document.getElementById('Reflectance4').value;
+        z4=document.getElementById('phool').value;
+        elevationofsun4= Math.sin(z4);
+        v4=y4/elevationofsun4;
+        document.getElementById('CorrectiveBand4').value=v4;
+
+         /* This is the sin of elevation of sun and output for CorrectivBand5.....*/
+
+         var z5, elevationofsun5, v5;
+        var y5= document.getElementById('Reflectance5').value;
+        z5=document.getElementById('phool').value;
+        elevationofsun5= Math.sin(z5);
+        v5=y5/elevationofsun5;
+        document.getElementById('CorrectiveBand5').value=v5;
+
+         /* This is the sin of elevation of sun and output for CorrectivBand6.....*/
+
+         var z6, elevationofsun6, v6;
+        var y6= document.getElementById('Reflectance6').value;
+        z6=document.getElementById('phool').value;
+        elevationofsun6= Math.sin(z6);
+        v6=y6/elevationofsun6;
+        document.getElementById('CorrectiveBand6').value=v6;
+
+        
+         /* This is the sin of elevation of sun and output for CorrectivBand7.....*/
+
+         var z7, elevationofsun7, v7;
+        var y7= document.getElementById('Reflectance7').value;
+        z7=document.getElementById('phool').value;
+        elevationofsun7= Math.sin(z7);
+        v7=y7/elevationofsun7;
+        document.getElementById('CorrectiveBand7').value=v7;
+
+        
+         /* This is the sin of elevation of sun and output for CorrectivBand9.....*/
+
+         var z9, elevationofsun9, v9;
+        var y9= document.getElementById('Reflectance9').value;
+        z9=document.getElementById('phool').value;
+        elevationofsun9= Math.sin(z9);
+        v9=y9/elevationofsun9;
+        document.getElementById('CorrectiveBand9').value=v9;
+
+        
+         /* This is the sin of elevation of sun and output for CorrectivBand10.....*/
+
+         var z10, elevationofsun10, v10;
+        var y10= document.getElementById('Reflectance10').value;
+        z10=document.getElementById('phool').value;
+        elevationofsun10= Math.sin(z10);
+        v10=y10/elevationofsun10;
+        document.getElementById('CorrectiveBand10').value=v10;
+
+        
+        /* This is the sin of elevation of sun and output for CorrectivBand11.....*/
+
+        var z11, elevationofsun11, v11;
+        var y11= document.getElementById('Reflectance11').value;
+        z11=document.getElementById('phool').value;
+        elevationofsun11= Math.sin(z11);
+        v11=y11/elevationofsun11;
+        document.getElementById('CorrectiveBand11').value=v11;
+        
+        }
+
+
+        /* Here we will calculate the NDVI*/
+        function NDVIfunc(value){
+        var bandvalue5, bandvalue4, NDVI;
+        bandvalue5=Number (document.getElementById('Band5').value);
+        bandvalue4=Number(document.getElementById('Band4').value);
+        
+        NDVI=(bandvalue5-bandvalue4)/(bandvalue5+bandvalue4);
+        document.getElementById('NDVI').value=NDVI;
+
+        var SAVIvalue;
+        SAVIvalue=((bandvalue5-bandvalue4)/(bandvalue5+bandvalue4))*(1.5);
+        document.getElementById('SAVI').value=SAVIvalue;
+
+        var bandvalue2=Number(document.getElementById('Band2').value);
+        var EVI, EVI1,EVI2;
+        EVI1=(bandvalue5-bandvalue4);
+        EVI2=(bandvalue5+6)*(bandvalue4-7.5)*(bandvalue2+1.5);
+        EVI=(EVI1/EVI2)*2.5;
+       
+
+        document.getElementById('EVI').value=EVI;
+
+
+        }
+
+</script>
+  
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-none d-lg-block">
+    <div class="container d-flex">
+      <div class="contact-info mr-auto">
+        <i class="icofont-envelope"></i><a href="mailto:contact@example.com">2017cs515@student.uet.edu.pk</a>
+        <i class="icofont-phone"></i> +92 304 996 8700
+      </div>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="skype"><i class="icofont-skype"></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container d-flex">
+
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="index.html"><span>Soil Type Identification</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="#">How It works?</a></li>
+          
+          <li><a target="_blank" href="https://www.arcgis.com/index.html">ArcGIS</a></li>
+          <li><a href="https://earthexplorer.usgs.gov/" target="_blank">Earth Explorer</a></li>
+          <li><a href="https://maps.google.com/" target="_blank">Google Map</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="soiltypes.html">Soil Types</a></li>
+          
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ol>
+        <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 40px; font-style: italic; text-shadow: 1px 1px 1px #cc7373;">IDENTIFICATION OF SOIL TYPES USING REMOTE SENSING DATA</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+
+            <article class="entry entry-single"  style="font-family: 'Times New Roman', Times, serif; font-size: 20px;">
+              <h3 style="font-family: 'Times New Roman', Times, serif; font-weight:bold;"><u>Enter the values of bands at specific location using spatial imagery</u></h3>
+              <form class="form-group" action="{{ url_for('getprediction')}}"method="post">
+                <!-- ======= Bands Sections for inputs ======= -->
+                <div class="row" style="margin-top: 30px;">
+                  <div class="col-md-6">
+                      <label><i style="color: black; font-weight: bold;"><ins>Band 1</ins></i></label>
+                      <input id="Band1" name="Band1" style="border-radius: 25px;" type="text" class="form-control"maxlength="7" placeholder="Value of Band 1" required onkeyup="multband1(this.value)" >
+                  </div>
+                  <div class="col-md-6">
+                      <label><i style="color: black;font-weight: bold;"><ins>Band 2</ins></i></label>
+                      <input id="Band2" name="Band2" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 2" onkeyup="multband2(this.value)">
+                  </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                    <label><i style="color: black; font-weight: bold;"><ins>Band 3</ins></i></label>
+                    <input id="Band3" name="Band3" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 3" onkeyup="multband3(this.value)">
+                </div>
+                <div class="col-md-6">
+                    <label><i style="color: black; font-weight: bold;"><ins>Band 4</ins></i></label>
+                    <input id="Band4" name="Band4" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 4" onkeyup="multband4(this.value)">
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <label><i style="color: black;font-weight: bold;"><ins>Band 5</ins></i></label>
+                    <input id="Band5" name="Band5" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 5" onkeyup="multband5(this.value);NDVIfunc(this.value)" >
+                </div>
+                <div class="col-md-6">
+                    <label><i style="color: black; font-weight: bold;"><ins>Band 6</ins></i></label>
+                    <input id="Band6" name="Band6" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 6" onkeyup="multband6(this.value)">
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                  <label><i style="color: black; font-weight: bold;"><ins>Band 7</ins></i></label>
+                  <input id="Band7" name="Band7" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 7" onkeyup="multband7(this.value)">
+              </div>
+              <div class="col-md-6">
+                  <label><i style="color: black; font-weight: bold;"><ins>Band 9</ins></i></label>
+                  <input id="Band9" name="Band9" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 9" onkeyup="multband9(this.value)">
+              </div>
+
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-md-6">
+                  <label><i style="color: black; font-weight: bold;"><ins>Band 10</ins></i></label>
+                  <input id="Band10" name="Band10" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 10" onkeyup="multband10(this.value)">
+              </div>
+              <div class="col-md-6">
+                  <label><i style="color: black; font-weight: bold;"><ins>Band 11</ins></i></label>
+                  <input id="Band11" name="Band11" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 11" onkeyup="multband11(this.value)">
+              </div>
+
+          </div>
+<!-- ======= Sun Elevation Section ======= -->
+          <br>
+          <br>
+         
+      
+            <div class="row">
+
+                <div class="col-md-12">
+                    <label><i style="color: black; font-weight: bold;"><ins>Sun Elevation</ins></i></label>
+                    <input name="Sun-elevation" id="phool" style="border-radius: 25px;" type="text" class="form-control" required onkeyup="myelevation(this.value);calEVI()"  placeholder="Value Of Sun Elevation">
+                </div>
+            </div>
+          
+<!-- ======= Reflectance Section ======= -->
+<br>
+<br>
+  <div class="row" style="margin-top: 30px;">
+      <div class="col-md-6">
+          <label><i style="color: black; font-weight: bold;"><ins>Reflectance Multiple Band 1</ins></i></label>
+          <input id="Reflectance1" name="ReflectanceBand1" style="border-radius: 25px;" type="text" maxlength="7" class="form-control" placeholder="Value of Reflectance Mul-Band 1" readonly>
+      </div>
+      <div class="col-md-6">
+          <label><i style="color: black; font-weight: bold;"><ins>Reflectance Multiple Band 2</ins></i></label>
+          <input id="Reflectance2" name="ReflectanceBand2" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 2" readonly>
+      </div>
+
+  </div>
+  <br>
+  <div class="row">
+      <div class="col-md-6">
+          <label><i style="color: black; font-weight: bold;"><ins>Reflectance Multiple Band 3</ins></i></label>
+          <input id="Reflectance3" name="ReflectanceBand3" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 3" readonly>
+      </div>
+      <div class="col-md-6">
+          <label><i style="color: black;font-weight: bold;"><ins>Reflectance Multiple Band 4</ins></i></label>
+          <input id="Reflectance4" name="ReflectanceBand4" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 4" readonly>
+      </div>
+
+  </div>
+  <br>
+  <div class="row">
+      <div class="col-md-6">
+          <label><i style="color: black;font-weight: bold;"><ins>Reflectance Multiple Band 5</ins></i></label>
+          <input id="Reflectance5" name="ReflectanceBand5" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 5" readonly>
+      </div>
+      <div class="col-md-6">
+          <label><i style="color: black;font-weight: bold;"><ins>Reflectance Multiple Band 6</ins></i></label>
+          <input id="Reflectance6" name="ReflectanceBand6" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 6" readonly>
+      </div>
+
+  </div>
+  <br>
+  <div class="row">
+      <div class="col-md-6">
+          <label><i style="color: black;font-weight: bold;"><ins>Reflectance Multiple Band 7</ins></i></label>
+          <input id="Reflectance7" name="ReflectanceBand7" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 7" readonly>
+      </div>
+      <div class="col-md-6">
+          <label><i style="color: black;font-weight: bold;"><ins>Reflectance Multiple Band 9</ins></i></label>
+          <input id="Reflectance9" name="ReflectanceBand9" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 9" readonly>
+      </div>
+
+  </div>
+  <br>
+  <div class="row">
+      <div class="col-md-6">
+          <label><i style="color: black;font-weight: bold;"><ins>Reflectance Multiple Band 10</ins></i></label>
+          <input id="Reflectance10" name="ReflectanceBand10" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 10" readonly>
+      </div>
+      <div class="col-md-6">
+          <label><i style="color: black;font-weight: bold;"><ins>Reflectance Multiple Band 11</ins></i></label>
+          <input id="Reflectance11" name="ReflectanceBand11" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 11" readonly>
+      </div>
+
+  </div>
+  
+
+<!-- ======= Corrective Reflectance Section ======= -->
+
+
+<br>
+<br>
+<div class="row" style="margin-top: 30px;">
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;"><ins>Corrective Reflectance Band 1</ins></i></label>
+      <input id="CorrectiveBand1" name="CorrectiveReflectanceBand1" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 1" readonly>
+  </div>
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;"><ins>Corrective Reflectance Band 2</ins></i></label>
+      <input id="CorrectiveBand2" name="CorrectiveReflectanceBand2" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 2" readonly>
+  </div>
+
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
+      <label><i style="color: black; font-weight: bold;"><ins>Corrective Reflectance Band 3</ins></i></label>
+      <input id="CorrectiveBand3" name="CorrectiveReflectanceBand3" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 3" readonly>
+  </div>
+  <div class="col-md-6">
+      <label><i style="color: black; font-weight: bold;"><ins>Corrective Reflectance Band 4</ins></i></label>
+      <input id="CorrectiveBand4" name="CorrectiveReflectanceBand4" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 4" readonly>
+  </div>
+
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;"><ins>Corrective Reflectance Band 5</ins></i></label>
+      <input id="CorrectiveBand5" name="CorrectiveReflectanceBand5" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 5" readonly>
+  </div>
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;"><ins>Corrective Reflectance Band 6</ins></i></label>
+      <input id="CorrectiveBand6" name="CorrectiveReflectanceBand6" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 6" readonly>
+  </div>
+
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;"><ins>Corrective Reflectance Band 7</ins></i></label>
+      <input id="CorrectiveBand7" name="CorrectiveReflectanceBand7" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 7" readonly>
+  </div>
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;"><ins>Corrective Reflectance Band 9</ins></i></label>
+      <input id="CorrectiveBand9" name="CorrectiveReflectanceBand9" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 9" readonly>
+  </div>
+
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;"><ins>Corrective Reflectance Band 10</ins></i></label>
+      <input id="CorrectiveBand10" name="CorrectiveReflectanceBand10" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 10" readonly>
+  </div>
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;"><ins>Corrective Reflectance Band 11</ins></i></label>
+      <input id="CorrectiveBand11" name="CorrectiveReflectanceBand11" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Corrective Ref-Band 11" readonly>
+  </div>
+
+</div>
+
+<!-- ======= NDVI,SAVI and EVI Section ======= -->
+<br>
+<div class="row" style="margin-top: 50px;">
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;"><ins>NDVI</ins></i></label>
+      <input id="NDVI" name="NDVI" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value Of NDVI" readonly required onkeyup="SAVIfunc(this.value)">
+  </div>
+  <div class="col-md-6">
+      <label><i style="color: black;font-weight: bold;" ><ins>SAVI</ins></i></label>
+      <input id="SAVI" name="SAVI" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value Of SAVI" readonly>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-md-12">
+      <label><i style="color: black;font-weight: bold;"><ins>EVI</ins></i></label>
+      <input id="EVI" name="EVI" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value Of EVI" readonly>
+  </div>
+
+
+</div>
+      
+<!-- ======= Buttons Section ======= -->
+
+<div class="row" style="margin-top: 60px;">
+  <div class="col-md-12 padding 10px" style="margin-top: 15px; margin-left: 100px;">
+      <button type="submit" style="border-radius: 25px;" class="btn btn-success col-md-4" class="btn btn-primary btn-block btn-large">Pridict</button>
+      <button style="border-radius: 25px;" type="reset" class="btn btn-success col-md-4 " >Clear</button>
+  </div>
+
+
+</div>
+
+    
+
+
+              </form>
+              <div  class="col-md-10 padding 10px" style="padding: 20px; background-color: #0af0c9; font-size: 30px; margin-left: 105px;">
+                {{ output }}
+            </div>
+
+              
+
+              
+<br><br><br>
+              <div class="entry-content">
+               
+                <blockquote>
+                  <i class="icofont-quote-left quote-left"></i>
+                  <p>
+                    Et vero doloremque tempore voluptatem ratione vel aut. Deleniti sunt animi aut. Aut eos aliquam doloribus minus autem quos.
+                  </p>
+                  <i class="las la-quote-right quote-right"></i>
+                  <i class="icofont-quote-right quote-right"></i>
+                </blockquote>
+
+               
+
+               
+
+              </div>
+
+             
+
+            </article><!-- End blog entry -->
+
+            <div class="blog-author clearfix">
+              <img src="assets/img/blog-author.jpg" class="rounded-circle float-left" alt="">
+              <h4>Jane Smith</h4>
+              <div class="social-links">
+                <a href="https://twitters.com/#"><i class="icofont-twitter"></i></a>
+                <a href="https://facebook.com/#"><i class="icofont-facebook"></i></a>
+                <a href="https://instagram.com/#"><i class="icofont-instagram"></i></a>
+              </div>
+              <p>
+                Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+              </p>
+            </div><!-- End blog author bio -->
+
+            <div class="blog-comments">
+
+              <h4 class="comments-count">8 Comments</h4>
+
+             
+
+              
+
+              <div class="reply-form">
+                <h4>Leave a Reply</h4>
+                <p>Your email address will not be published. Required fields are marked * </p>
+                
+
+              </div>
+
+            </div><!-- End blog comments -->
+
+          </div><!-- End blog entries list -->
+
+          <div class="col-lg-4">
+
+            <div class="sidebar">
+
+              <h3 class="sidebar-title">Important Links</h3>
+              <a href="https://maps.google.com/" style="font-weight: bold;" target="_blank"> Google Map</a>
+              <p style="text-align: justify;">Googel Map is uesd for the acqusition of Exact and accurate location coordinates of a reuired specific Location for image acqusition.</p>
+              
+              <a href="https://earthexplorer.usgs.gov/" style="font-weight: bold;" target="_blank">Earth Explorer</a>
+              <p style="text-align: justify;">Earth Explorer is used for the acqusition of Images. You can download the image of required location.</p>
+             
+              <a target="_blank" style="font-weight: bold;" href="https://www.arcgis.com/index.html">ArcGIS</a>
+              <p style="text-align: justify;">ArcGIS is an open source that is used to get the band values of the required location for the identification of soil. It is available in online and offline version. You can download or use this online Extension.</p>
+              
+              </div><!-- End sidebar search formn-->
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+   
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#">How It works?</a></li>
+              <li><a target="_blank" href="https://www.arcgis.com/index.html">ArcGIS</a></li>
+              <li><a href="https://earthexplorer.usgs.gov/" target="_blank">Earth Explorer</a></li>
+              <li><a href="pricing.html" target="_blank">Google Map</a></li>
+              <li><a href="team.html">Team</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="soiltypes.html">Soil Types</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              University Of Engineering <br>
+              and Technology Lahore<br>
+              Narowal Campus   <br><br>
+              <strong>Phone:</strong> +92 304 996 8700<br>
+              <strong>Email:</strong>2017cs515@student.uet.edu.pk<br>
+            </p>
+
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-info">
+            <h3>About Soil Type Identification</h3>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+   
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
