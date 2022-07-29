@@ -9,7 +9,7 @@ model = pickle.load(open('model','rb'))
 
 @app.route('/')
 def home():
-    return render_template('Index.html')
+    return render_template('index.html')
 
 @app.route('/',methods=['POST'])
 def getLocation():
@@ -96,15 +96,7 @@ def getLocation():
     EVI2 = (b5 + 6) * (b4 - 7.5) * (b2 + 1.5);
     EVI = (EVI1 / EVI2) * 2.5;
 
-    return render_template('Index.html',b1=b1,b2=b2,b3=b3,b4=b4,b5=b5,b6=b6,b7=b7,b9=b9,b10=b10,b11=b11,rm1=rm1,rm2=rm2,rm3=rm3,rm4=rm4,rm5=rm5,rm6=rm6,rm7=rm7,rm8=rm8,rm9=rm9,sun=sun,crb1=crb1,crb2=crb2,crb3=crb3,crb4=crb4,crb5=crb5,crb6=crb6,crb7=crb7,crb8=crb8,crb9=crb9,crb10=crb10,crb11=crb11,ndvi=NDVI,savi=SAVIvalue,evi=EVI)
-
-@app.route('/getprediction',methods=['POST'])
-def getprediction():    
-    print("Form Values",request.form.values())
-    input = [float(x) for x in request.form.values()]
-    final_input = [np.array(input)]
-    prediction = model.predict(final_input)
-    return render_template('Index.html', output='Your Soil Type is :{}'.format(prediction))
+    return render_template('index.html',b1=b1,b2=b2,b3=b3,b4=b4,b5=b5,b6=b6,b7=b7,b9=b9,b10=b10,b11=b11,rm1=rm1,rm2=rm2,rm3=rm3,rm4=rm4,rm5=rm5,rm6=rm6,rm7=rm7,rm8=rm8,rm9=rm9,sun=sun,crb1=crb1,crb2=crb2,crb3=crb3,crb4=crb4,crb5=crb5,crb6=crb6,crb7=crb7,crb8=crb8,crb9=crb9,crb10=crb10,crb11=crb11,ndvi=NDVI,savi=SAVIvalue,evi=EVI)
 
 if __name__ == "__main__":
   app.run(threaded=True, port=5000)
