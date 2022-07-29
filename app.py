@@ -99,12 +99,17 @@ def getLocation():
 
 @app.route('/getprediction',methods=['POST'])
 def getprediction():
-
+    def listToString(s): 
+        str1 = " "     
+        for ele in s: 
+            str1 += ele  
+            return str1 
     print("Form Values",request.form.values())
     input = [float(x) for x in request.form.values()]
     final_input = [np.array(input)]
     prediction = model.predict(final_input)
-    return render_template('Output.html', output='Your Soil Type is :{}'.format(prediction))
+    prediction=listToString(prediction)
+    return render_template('Output.html', output=prediction)
 
 
 if __name__ == "__main__":
