@@ -17,11 +17,7 @@ def getLocation():
     starting = request.form['start']
     ending = request.form['end']
     print(starting+" == "+ending)
-
     location = request.form['location']
-    
-    
-
     l = location.split(",")
     l1 = l[0]
     l2 = l[1]
