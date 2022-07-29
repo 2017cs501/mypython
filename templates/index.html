@@ -1,12 +1,393 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <style>
+         body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+        
+        .topnav a {
+            float: right;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        
+        .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+        body {
+            background: linear-gradient(-45deg, #43cbff, #970b77);
+        }
+        
+        .jumbotron {
+            background-color: #0af0c9;
+        }
+        
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: rgb(194, 194, 194);
+            padding: 25px 30px;
+        }
+        
+        .con1 {
+            margin-top: 30px;
+            max-width: 700px;
+            width: 100%;
+            background: rgb(194, 194, 194);
+            padding: 25px 30px;
+        }
+    </style>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
-    <h1>Hy Baby</h1>
+    <div class="topnav" style="width: 100%;">
+        <a href="./soiltypes.html">Soil Types</a>
+        <a href="https://www.arcgis.com/index.html" target="_blank">ArcGIS</a>
+        <a href="https://earthexplorer.usgs.gov/" target="_blank">Earth Explorer</a>
+        <a href="https://www.google.com/maps" target="_blank">Google Map</a>
+        <a href="./Index.html">Home</a>
+    </div>
+    <h2 style="text-align: center;font-weight:800px;color: white; font-size: 50px;font-style: italic ;margin-top: 2px; font-family: 'Times New Roman', Times, serif; font-weight: bold;"> IDENTIFICATION OF SOIL TYPES USING REMOTE SENSING DATA</h2>
+    <div class="container">
+
+        <form name="passbtn" method="post">
+            <div class="col-md-4">
+                <p>Enter The Location</p>
+                <label><i style="color: black; font-weight: bold;">Location</i></label>
+                <input id="location" name="location" style="border-radius: 25px;" type="text" class="form-control" maxlength="30" placeholder="Latitude = 32.12345 , Longitude = 72.12345" required onkeyup="location(this.value);">
+            </div>
+            <div class="col-md-12 padding 10px" style="margin-top: 15px; margin-left: 15px;">
+
+                <label for="start">Starting Date:</label>
+                <input type="date" id="start" name="start">
+
+                <label for="end">Ending Date:</label>
+                <input type="date" id="end" name="end"></div>
+
+
+            <div class="col-md-12 padding 10px" style="margin-top: 15px; margin-left: 150px;">
+                <button type="submit" style="border-radius: 25px;" class="btn btn-success col-md-2" class="btn btn-primary btn-block btn-large">Find Band Values</button>
+            </div>
+
+        </form>
+        <!-- <div>
+            <a href="#" id="get_location">Get My Locatio</a>
+            <div id="map">
+                <iframe id="google_map" width="425" height="350 " src="https://maps.google.co.uk?output=embed"></iframe>
+            </div>
+            <script>
+                var c = function(pos) {
+                    var lat = pos.coords.latitude,
+                        long = pos.coords.longitude,
+                        coords = lat + ',' + long;
+
+                    document.getElementById('google_map').setAttribute('src', 'https://maps.google.co.uk/?q=' + coords + '&z=60&output=embed');
+                    document.getElementById('location').value = coords;
+                }
+                document.getElementById('get_location').onclick = function() {
+                    navigator.geolocation.getCurrentPosition(c);
+                    return false;
+                }
+            </script>
+        </div>
+
+        <div>
+            <a href="#" id="mark">Mark Location on Map</a>
+        </div>
+
+        <script>
+            var c = function(pos) {
+                var coords = document.getElementById('location').value;
+
+                document.getElementById('google_map').setAttribute('src', 'https://maps.google.co.uk/?q=' + coords + '&z=60&output=embed');
+            }
+            document.getElementById('mark').onclick = function() {
+                navigator.geolocation.getCurrentPosition(c);
+                return false;
+            }
+        </script>
+
+        <h3 style="font-family: 'Times New Roman', Times, serif; font-weight:bold;"><u>Enter the values of bands at specific location using Spectral image</u></h3>
+        <form class="form-group"  action="{{ url_for('getprediction')}}" method="post">
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4">
+                    <label><i style="color: black; font-weight: bold;">Band 1</i></label>
+                    <input id="Band1" value={{b1}} name="Band1" style="border-radius: 25px;" type="text" class="form-control" maxlength="7" placeholder="Value of Band 1">
+                </div>
+                <div class="col-md-4">
+                    <label><i style="color: black;font-weight: bold;">Band 2</i></label>
+                    <input id="Band2" value={{b2}} name="Band2" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 2">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <label><i style="color: black; font-weight: bold;">Band 3</i></label>
+                    <input id="Band3" value={{b3}} name="Band3" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 3">
+                </div>
+                <div class="col-md-4">
+                    <label><i style="color: black; font-weight: bold;">Band 4</i></label>
+                    <input id="Band4" value={{b4}} name="Band4" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 4">
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <label><i style="color: black;font-weight: bold;">Band 5</i></label>
+                    <input id="Band5" value={{b5}} name="Band5" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 5">
+                </div>
+                <div class="col-md-4">
+                    <label><i style="color: black; font-weight: bold;">Band 6</i></label>
+                    <input id="Band6" value={{b6}} name="Band6" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 6">
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <label><i style="color: black; font-weight: bold;">Band 7</i></label>
+                    <input id="Band7" value={{b7}} name="Band7" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 7">
+                </div>
+                <div class="col-md-4">
+                    <label><i style="color: black; font-weight: bold;">Band 9</i></label>
+                    <input id="Band9" value={{b9}} name="Band9" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 9">
+              </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <label><i style="color: black; font-weight: bold;">Band 10</i></label>
+                    <input id="Band10" value={{b10}} name="Band10" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 10">
+                </div>
+                <div class="col-md-4">
+                    <label><i style="color: black; font-weight: bold;">Band 11</i></label>
+                    <input id="Band11" value={{b11}} name="Band11" style="border-radius: 25px;" type="text" class="form-control" required placeholder="Value of Band 11">
+                </div>
+
+            </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <label><i style="color: black; font-weight: bold;">Sun Elevation</i></label>
+                <input name="Sun-elevation" id="phool" value={{sun}} style="border-radius: 25px;" type="text" class="form-control" required onkeyup="myelevation(this.value);calEVI()" placeholder="Value Of Sun Elevation">
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black; font-weight: bold;">Reflectance Multiple Band 1</i></label>
+                <input id="Reflectance1" value={{rm1}} name="ReflectanceBand1" style="border-radius: 25px;" type="text" maxlength="7" class="form-control" placeholder="Value of Reflectance Mul-Band 1">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black; font-weight: bold;">Reflectance Multiple Band 2</i></label>
+                <input id="Reflectance2" value={{rm2}} name="ReflectanceBand2" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 2">
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black; font-weight: bold;">Reflectance Multiple Band 3</i></label>
+                <input id="Reflectance3" value={{rm3}} name="ReflectanceBand3" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 3">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;">Reflectance Multiple Band 4</i></label>
+                <input id="Reflectance4" value={{rm4}} name="ReflectanceBand4" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 4">
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;">Reflectance Multiple Band 5</i></label>
+                <input id="Reflectance5" value={{rm5}} name="ReflectanceBand5" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 5">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;">Reflectance Multiple Band 6</i></label>
+                <input id="Reflectance6" value={{rm6}} name="ReflectanceBand6" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 6">
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;">Reflectance Multiple Band 7</i></label>
+                <input id="Reflectance7" value={{rm7}} name="ReflectanceBand7" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 7">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;">Reflectance Multiple Band 8</i></label>
+                <input id="Reflectance9" value={{rm8}} name="ReflectanceBand9" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 9">
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;">Reflectance Multiple Band 9</i></label>
+                <input id="Reflectance10" value={{rm9}} name="ReflectanceBand10" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 10">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;">Reflectance Multiple Band 10</i></label>
+                <input id="Reflectance11" value={{rm9}} name="ReflectanceBand11" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value of Reflectance Mul-Band 11">
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;"> Corrective Reflectance Band 1</i></label>
+                <input id="CorrectiveBand1" name="CorrectiveReflectanceBand1" style="border-radius: 25px;" type="text" class="form-control" value={{crb1}} placeholder="Value of Corrective Ref-Band 1">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;">Corrective Reflectance Band 2</i></label>
+                <input id="CorrectiveBand2" name="CorrectiveReflectanceBand2" style="border-radius: 25px;" type="text" class="form-control" value={{crb2}} placeholder="Value of Corrective Ref-Band 2">
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black; font-weight: bold;"> Corrective Reflectance Band 3</i></label>
+                <input id="CorrectiveBand3" name="CorrectiveReflectanceBand3" style="border-radius: 25px;" type="text" class="form-control" value={{crb3}} placeholder="Value of Corrective Ref-Band 3">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black; font-weight: bold;"> Corrective Reflectance Band 4</i></label>
+                <input id="CorrectiveBand4" name="CorrectiveReflectanceBand4" style="border-radius: 25px;" type="text" class="form-control" value={{crb4}} placeholder="Value of Corrective Ref-Band 4">
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;"> Corrective Reflectance Band 5</i></label>
+                <input id="CorrectiveBand5" name="CorrectiveReflectanceBand5" style="border-radius: 25px;" type="text" class="form-control" value={{crb5}} placeholder="Value of Corrective Ref-Band 5">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;"> Corrective Reflectance Band 6</i></label>
+                <input id="CorrectiveBand6" name="CorrectiveReflectanceBand6" style="border-radius: 25px;" type="text" class="form-control" value={{crb6}} placeholder="Value of Corrective Ref-Band 6">
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;"> Corrective Reflectance Band 7</i></label>
+                <input id="CorrectiveBand7" name="CorrectiveReflectanceBand7" style="border-radius: 25px;" type="text" class="form-control" value={{crb7}} placeholder="Value of Corrective Ref-Band 7">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;"> Corrective Reflectance Band 9</i></label>
+                <input id="CorrectiveBand9" name="CorrectiveReflectanceBand9" style="border-radius: 25px;" type="text" class="form-control" value={{crb8}} placeholder="Value of Corrective Ref-Band 9">
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;"> Corrective Reflectance Band 10</i></label>
+                <input id="CorrectiveBand10" name="CorrectiveReflectanceBand10" style="border-radius: 25px;" type="text" class="form-control" value={{crb9}} placeholder="Value of Corrective Ref-Band 10">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;"> Corrective Reflectance Band 11</i></label>
+                <input id="CorrectiveBand11" name="CorrectiveReflectanceBand11" style="border-radius: 25px;" type="text" class="form-control" value={{crb10}} placeholder="Value of Corrective Ref-Band 11">
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    </div>
+
+
+    <div class="container">
+
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;"> NDVI</i></label>
+                <input id="NDVI" name="NDVI" value={{ndvi}} style="border-radius: 25px;" type="text" class="form-control" placeholder="Value Of NDVI">
+            </div>
+            <div class="col-md-4">
+                <label><i style="color: black;font-weight: bold;" >SAVI</i></label>
+                <input id="SAVI" name="SAVI" value={{savi}} style="border-radius: 25px;" type="text" class="form-control" placeholder="Value Of SAVI">
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <label><i style="color: black;font-weight: bold;">EVI</i></label>
+                <input id="EVI" name="EVI" value="{{evi}}" style="border-radius: 25px;" type="text" class="form-control" placeholder="Value Of EVI">
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 padding 10px" style="margin-top: 15px; margin-left: 150px;">
+                <button type="submit" style="border-radius: 25px;" class="btn btn-success col-md-2" class="btn btn-primary btn-block btn-large">Pridict</button>
+                <button style="border-radius: 25px;" type="reset" class="btn btn-success col-md-2 ">Clear</button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    </form>
+    <div class="col-md-10 padding 10px" style="padding: 20px; background-color: #0af0c9; font-size: 30px; margin-left: 105px;">
+     
+    </div>
+
+    </div> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
