@@ -72,7 +72,7 @@
     <h2 style="text-align: center;font-weight:800px;color: white; font-size: 50px;font-style: italic ;margin-top: 2px; font-family: 'Times New Roman', Times, serif; font-weight: bold;"> IDENTIFICATION OF SOIL TYPES USING REMOTE SENSING DATA</h2>
     <div class="container">
 
-        <form name="passbtn" method="post">
+        <form name="passbtn" accept="." method="post">
             <div class="col-md-4">
                 <p>Enter The Location</p>
                 <label><i style="color: black; font-weight: bold;">Location</i></label>
@@ -130,7 +130,7 @@
         </script>
 
         <h3 style="font-family: 'Times New Roman', Times, serif; font-weight:bold;"><u>Enter the values of bands at specific location using Spectral image</u></h3>
-        <form class="form-group" method="post">
+        <form class="form-group"  action="{{ url_for('getprediction')}}" method="post">
             <div class="row" style="margin-top: 30px;">
                 <div class="col-md-4">
                     <label><i style="color: black; font-weight: bold;">Band 1</i></label>
@@ -379,7 +379,7 @@
 
     </form>
     <div class="col-md-10 padding 10px" style="padding: 20px; background-color: #0af0c9; font-size: 30px; margin-left: 105px;">
-     
+     {{output}}
     </div>
 
     </div>
