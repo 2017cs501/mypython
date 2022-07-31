@@ -1,23 +1,24 @@
+from ast import Index
 import numpy as np
 from flask import Flask, request, render_template
 import pickle
 import ee
 import collections
+import math
 
 app = Flask(__name__)
 model = pickle.load(open('model','rb'))
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('Index.html')
+
 
 @app.route('/',methods=['POST'])
 def getLocation():
 
-    starting = request.form['start']
-    ending = request.form['end']
-    print(starting+" == "+ending)
     location = request.form['location']
+    
     l = location.split(",")
     l1 = l[0]
     l2 = l[1]
@@ -57,60 +58,51 @@ def getLocation():
     data_b1 = im1.select("B11").reduceRegion(ee.Reducer.mean(),p,10).get("B11")
     b11 = (data_b1.getInfo()) 
 
-    rb1 = im1.get('REFLECTANCE_ADD_BAND_1').getInfo()
-    rb2 = im1.get('REFLECTANCE_ADD_BAND_2').getInfo()
-    rb3 = im1.get('REFLECTANCE_ADD_BAND_3').getInfo()
-    rb4 = im1.get('REFLECTANCE_ADD_BAND_4').getInfo()
-    rb5 = im1.get('REFLECTANCE_ADD_BAND_5').getInfo()
-    rb6 = im1.get('REFLECTANCE_ADD_BAND_6').getInfo()
-    rb7 = im1.get('REFLECTANCE_ADD_BAND_7').getInfo()
-    rb8 = im1.get('REFLECTANCE_ADD_BAND_8').getInfo()
-    rb9 = im1.get('REFLECTANCE_ADD_BAND_9').getInfo()
+    m1 = (0.00002 * b1) + (-0.1)
+    m2 = (0.00002 * b2) + (-0.1)
+    m3 = (0.00002 * b3) + (-0.1)
+    m4 = (0.00002 * b4) + (-0.1)
+    m5 = (0.00002 * b5) + (-0.1)
+    m6 = (0.00002 * b6) + (-0.1)
+    m7 = (0.00002 * b7) + (-0.1)
+    m8 = (0.00002 * b8) + (-0.1)
+    m9 = (0.00002 * b9) + (-0.1)
+    m10 = (0.00002 * b10) + (-0.1)
+    m11 = (0.00002 * b11) + (-0.1)
 
-    rm1 = im1.get('REFLECTANCE_MULT_BAND_1').getInfo()
-    rm2 = im1.get('REFLECTANCE_MULT_BAND_2').getInfo()
-    rm3 = im1.get('REFLECTANCE_MULT_BAND_3').getInfo()
-    rm4 = im1.get('REFLECTANCE_MULT_BAND_4').getInfo()
-    rm5 = im1.get('REFLECTANCE_MULT_BAND_5').getInfo()
-    rm6 = im1.get('REFLECTANCE_MULT_BAND_6').getInfo()
-    rm7 = im1.get('REFLECTANCE_MULT_BAND_7').getInfo()
-    rm8 = im1.get('REFLECTANCE_MULT_BAND_8').getInfo()
-    rm9 = im1.get('REFLECTANCE_MULT_BAND_9').getInfo()
 
     sun = im1.get('SUN_ELEVATION').getInfo()
     
-    crb1=rm1/sun
-    crb2=rm2/sun
-    crb3=rm3/sun
-    crb4=rm4/sun
-    crb5=rm5/sun
-    crb6=rm6/sun
-    crb7=rm7/sun
-    crb8=rm8/sun
-    crb9=rm9/sun
-    crb10=rm9/sun
-    crb11=rm9/sun
+    s1 = math.sin(sun)
+    v1 = m1 / s1;
+    v2 = m2 / s1;
+    v3 = m3 / s1;
+    v4 = m4 / s1;
+    v5 = m5 / s1;
+    v6 = m6 / s1;
+    v7 = m7 / s1;
+    v8 = m8 / s1;
+    v9 = m9 / s1;
+    v10 = m10 / s1;
+    v11 = m11 / s1;
+
     NDVI = (b5 - b4) / (b5 + b4);
     SAVIvalue = ((b5 - b4) / (b5 + b4)) * (1.5);
     EVI1 = (b5 - b4);
     EVI2 = (b5 + 6) * (b4 - 7.5) * (b2 + 1.5);
     EVI = (EVI1 / EVI2) * 2.5;
-    return render_template('index.html',b1=b1,b2=b2,b3=b3,b4=b4,b5=b5,b6=b6,b7=b7,b9=b9,b10=b10,b11=b11,sun=sun,rm1=rm1,rm2=rm2,rm3=rm3,rm4=rm4,rm5=rm5,rm6=rm6,rm7=rm7,rm8=rm8,rm9=rm9,crb1=crb1,crb2=crb2,crb3=crb3,crb4=crb4,crb5=crb5,crb6=crb6,crb7=crb7,crb8=crb8,crb9=crb9,crb10=crb10,crb11=crb11,ndvi=NDVI,savi=SAVIvalue,evi=EVI)
+
+    return render_template('Index.html',NDVI=NDVI,SAVI=SAVIvalue,EVI=EVI,b1=b1,b2=b2,b3=b3,b4=b4,b5=b5,b6=b6,b7=b7,b9=b9,b10=b10,b11=b11,rm1=m1,rm2=m2,rm3=m3,rm4=m4,rm5=m5,rm6=m6,rm7=m7,rm8=m7,rm9=m9,rm10=m10,rm11=m11,sun=sun,v1 =v1,v2=v2,v3=v3,v4=v4,v5=v5,v6=v6,v7=v7,v8=v8,v9=v9,v10=v10,v11=v11)
 
 @app.route('/getprediction',methods=['POST'])
-def getprediction():
-    def listToString(s): 
-        str1 = " "     
-        for ele in s: 
-            str1 += ele  
-            return str1 
-    print("Form Values",request.form.values())
+def getprediction():    
+
     input = [float(x) for x in request.form.values()]
     final_input = [np.array(input)]
     prediction = model.predict(final_input)
-    prediction=listToString(prediction)
-    return render_template('Output.html', output=prediction)
 
+    return render_template('Output.html', output='Your Soil Type is :{}'.format(prediction))
+   
 
 if __name__ == "__main__":
-  app.run(threaded=True, port=5000)
+    app.run(debug=True)
