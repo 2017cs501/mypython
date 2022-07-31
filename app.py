@@ -11,7 +11,7 @@ model = pickle.load(open('model','rb'))
 
 @app.route('/')
 def home():
-    return render_template('Index.html')
+    return render_template('index.html')
 
 
 @app.route('/',methods=['POST'])
@@ -92,7 +92,7 @@ def getLocation():
     EVI2 = (b5 + 6) * (b4 - 7.5) * (b2 + 1.5);
     EVI = (EVI1 / EVI2) * 2.5;
 
-    return render_template('Index.html',NDVI=NDVI,SAVI=SAVIvalue,EVI=EVI,b1=b1,b2=b2,b3=b3,b4=b4,b5=b5,b6=b6,b7=b7,b9=b9,b10=b10,b11=b11,rm1=m1,rm2=m2,rm3=m3,rm4=m4,rm5=m5,rm6=m6,rm7=m7,rm8=m7,rm9=m9,rm10=m10,rm11=m11,sun=sun,v1 =v1,v2=v2,v3=v3,v4=v4,v5=v5,v6=v6,v7=v7,v8=v8,v9=v9,v10=v10,v11=v11)
+    return render_template('index.html',NDVI=NDVI,SAVI=SAVIvalue,EVI=EVI,b1=b1,b2=b2,b3=b3,b4=b4,b5=b5,b6=b6,b7=b7,b9=b9,b10=b10,b11=b11,rm1=m1,rm2=m2,rm3=m3,rm4=m4,rm5=m5,rm6=m6,rm7=m7,rm8=m7,rm9=m9,rm10=m10,rm11=m11,sun=sun,v1 =v1,v2=v2,v3=v3,v4=v4,v5=v5,v6=v6,v7=v7,v8=v8,v9=v9,v10=v10,v11=v11)
 
 @app.route('/getprediction',methods=['POST'])
 def getprediction():    
